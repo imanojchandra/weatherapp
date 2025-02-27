@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'weather/styles.css' %}">
+</head>
+<body>
+    <div class="background">
+        <div class="overlay"></div>
+    </div>
+
+    <div class="content-box">
+        <h1>Weather App</h1>
+        <form method="POST" action="/">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="Enter city name" class="search-box" required>
+            <button type="submit">See Weather</button>
+        </form>
+
+        {% if weather_data %}
+        <div class="weather-info">
+            <h2>Weather in {{ weather_data.name }}</h2>
+
+            <!-- Display local time -->
+            <p>{{ city_local_time }}</p>
+
+            <!-- Display temperature -->
+            <p>Temperature: {{ weather_data.main.temp }}&deg;C</p>
+
+            <!-- Display weather description -->
+            <p>Weather: {{ weather_data.weather.0.description }}</p>
+        </div>
+        {% elif error_message %}
+        <p class="error"><strong>{{ error_message }}</strong></p>
+        {% endif %}
+    </div>
+</body>
+</html>
