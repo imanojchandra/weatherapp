@@ -1,4 +1,8 @@
-#!/usr/bin/env python
+# C:\Users\username>cd weatherapp
+# C:\Users\username\weatherapp>python manage.py migrate
+# C:\Users\username\weatherapp>python manage.py runserver
+# Browse on internet: http://127.0.0.1:8000/
+
 import os
 import sys
 
