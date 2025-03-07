@@ -62,17 +62,16 @@ def index(request):
                 weather_data['dt'] + timezone_offset
             ).strftime('%d-%m-%Y, %I:%M %p')  
 
-            # Store the weather data in the session to allow for the redirect
+            # Store the weather data in the session
             request.session['weather_data'] = weather_data
             request.session['city_local_time'] = city_local_time
 
-            # Redirect to the same page to prevent resubmission on refresh
             return redirect('index')
 
         else:
             error_message = 'City not found'
 
-    # Handle GET request or page refresh: show data if it exists
+    # Handle GET request or page refresh, i.e. show data if it exists
     weather_data = request.session.get('weather_data')
     city_local_time = request.session.get('city_local_time')
 
